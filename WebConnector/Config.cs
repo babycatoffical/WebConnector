@@ -6,5 +6,7 @@ namespace WebConnector
     {
         public bool IsEnabled { get; set; } = true;
         public bool Debug { get; set; } = false;
+        public string DataSendType { get; set; } = "JSON";
+        public string IpAddress { get; set; } = "";
     }
 }

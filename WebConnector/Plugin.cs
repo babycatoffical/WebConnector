@@ -6,16 +6,22 @@ namespace WebConnector
 {
     public class Plugin : Plugin<Config>
     {
-        public static Plugin Singleton { get; set; }
+        public Plugin Singleton { get; set; }
         
         public override string Name => "WebConnector";
 
         public override void OnEnabled()
         {
             Singleton = this;
-            
+            Log.Info($""" 
+                        ======================[WebConnector.Info]======================
+                        [WebConnector]: Successfully activated.
+                        [WebConnector.Debug]: {Singleton.Config.Debug} 
+                        [WebConnector.WebServerIP]: {(string.IsNullOrEmpty(Singleton.Config.IpAddress) ? "None" :  Singleton.Config.IpAddress)}
+                        [WebConnector.DataType]: {Singleton.Config.DataSendType}
+                        =============================[End]=============================
+                     """);
             PluginRegister();
-            base.OnEnabled();
         }
 
         public override void OnDisabled()
