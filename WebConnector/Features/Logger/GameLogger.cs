@@ -5,20 +5,21 @@ using Exiled.API.Features;
 
 namespace WebConnector.Features.Logger;
 
-public class MainLogger
+public static class GameLogger
 {
     private static bool IsErrorLogActive { get; set; } = true;
     private static bool IsInfoLogActive { get; set; } = true; 
     
-    public static void Error(string _message)
+    public static void Error(string _message, string messageSender = "Unknown")
     {
         try
         {
             if (!IsErrorLogActive) return;
-            StringBuilder message = new StringBuilder(1, 512);
+
+            StringBuilder message = new StringBuilder();
 
             message.Append(
-                $"[WebConnector.ERROR]: An Error detected. Error Description: {(string.IsNullOrEmpty(_message) ? "Unknown Error" : message)}");
+                $"[WebConnector.ERROR({messageSender})]: An Error detected. Error Description:\n {(string.IsNullOrEmpty(_message) ? "Unknown Error" : _message)}");
 
             Log.Error(message);
         }
@@ -30,7 +31,7 @@ public class MainLogger
         }
     }
 
-    public static void Info(string _message)
+    public static void Info(string _message, string messageSender = "Unknown")
     {
         try
         {
@@ -43,7 +44,7 @@ public class MainLogger
             StringBuilder message = new StringBuilder(1, 512);
 
             message.Append(
-                $"[WebConnector.INFO]: {message}");
+                $"[WebConnector.INFO({messageSender})]: {_message}");
 
             Log.Info(message);
         }
@@ -54,6 +55,4 @@ public class MainLogger
             IsInfoLogActive = false;
         }
     }
-    
-    
 }

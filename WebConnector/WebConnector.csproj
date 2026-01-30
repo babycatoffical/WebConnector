@@ -80,8 +80,10 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Config.cs" />
-        <Compile Include="Features\Logger\MainLogger.cs" />
-        <Compile Include="Features\SSSettings\ButtonFeature.cs" />
+        <Compile Include="Features\Logger\GameLogger.cs" />
+        <Compile Include="Features\SSSettings\Settings\ButtonSettings.cs" />
+        <Compile Include="Features\SSSettings\Settings\HeaderSettings.cs" />
+        <Compile Include="Features\SSSettings\SSMainSettings.cs" />
         <Compile Include="Handlers\ServerHandler.cs" />
         <Compile Include="Plugin.cs" />
         <Compile Include="Properties\AssemblyInfo.cs"/>

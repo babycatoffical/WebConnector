@@ -6,27 +6,28 @@ namespace WebConnector
 {
     public class Plugin : Plugin<Config>
     {
-        public Plugin Singleton { get; set; }
+        public static Plugin Instance { get; set; }
         
         public override string Name => "WebConnector";
 
         public override void OnEnabled()
         {
-            Singleton = this;
-            Log.Info($""" 
-                        ======================[WebConnector.Info]======================
-                        [WebConnector]: Successfully activated.
-                        [WebConnector.Debug]: {Singleton.Config.Debug} 
-                        [WebConnector.WebServerIP]: {(string.IsNullOrEmpty(Singleton.Config.IpAddress) ? "None" :  Singleton.Config.IpAddress)}
-                        [WebConnector.DataType]: {Singleton.Config.DataSendType}
-                        =============================[End]=============================
-                     """);
+            Instance = this;
+            Log.Info("\n" + $""" 
+                         ======================[WebConnector.Info]======================
+                         [WebConnector]: Successfully activated.
+                         [WebConnector.Debug]: {Instance.Config.Debug} 
+                         [WebConnector.WebServerIP]: {(string.IsNullOrEmpty(Instance.Config.IpAddress) ? "None" :  Instance.Config.IpAddress)}
+                         [WebConnector.DataType]: {Instance.Config.DataSendType}
+                         =============================[End]=============================
+                      """);
+            
             PluginRegister();
         }
 
         public override void OnDisabled()
         {
-            Singleton = null;
+            Instance = null;
             
             PluginUnregister();
             base.OnDisabled();
@@ -34,12 +35,12 @@ namespace WebConnector
 
         private static void PluginRegister()
         {
-            Player.Joined += ServerHandler.OnServerStarted;
+            Player.Joined += ServerHandler.OnJoined;
         }
 
         private static void PluginUnregister()
         {
-            Player.Joined -= ServerHandler.OnServerStarted;
+            Player.Joined -= ServerHandler.OnJoined;
         }
     }
 }
