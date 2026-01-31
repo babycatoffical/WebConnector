@@ -9,7 +9,6 @@ public class ServerHandler
     {
         var target = ev.Player;
         
-        SSMainSettings.RegisterSSSettings(target);
     }
     
 }

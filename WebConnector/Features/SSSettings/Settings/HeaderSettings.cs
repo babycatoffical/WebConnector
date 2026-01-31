@@ -11,13 +11,20 @@ public class HeaderSettings
     private static string Name => "HeaderSettings"; 
     private static HeaderSetting  HeaderSetting { get; set; }
     private static List<HeaderSetting> HeaderList { get; } = [];
-    
-    public static void SetHeader(int id, string name, string hint, bool padding = true)
+
+    /**
+     * Set your HeaderSettings
+     *  <param name="id">SSSettings id (You must be a different id. if you're using the same id, <b>the plugin will be sent error</b>).</param>
+     *  <param name="name">Set the HeaderSettings name.</param>
+     *  <param name="hint">Set your hint object (Can be Null)</param>
+     *  <param name="padding">Set headerSettings padding (the default is 'true')</param>
+     *  <returns>It makes HeaderSettings and save to HeaderList</returns>
+     */
+    public static void SetHeader(int id, string name, string hint = null, bool padding = true)
     {
         try
         {
             HeaderSetting = new HeaderSetting(id, name,  hint, padding);
-            GameLogger.Info("SetHeader has been successfully completed.", Name);
 
             HeaderList.Add(HeaderSetting);
         }
@@ -27,12 +34,16 @@ public class HeaderSettings
         }
     }
 
+    /**It Registers the target player's HeaderSettings and sends to the target player
+     * <param name="player">Set a target player</param>
+     * <returns>Register HeaderSettings to target player, and sent to target player</returns>
+     */
     public static void RegisterHeaderSettings(Player player)
     {
         try
         {
             SettingBase.Register(player, HeaderList);
-            GameLogger.Info($"Target Player: {player}'s Header Settings register has been completed.", Name);
+            SettingBase.SendToPlayer(player);
         }
         catch (Exception ex)
         {
@@ -40,42 +51,20 @@ public class HeaderSettings
         }
     }
 
+    /**It Registers HeaderSettings And apply this data Globally.
+     * <returns>Register saved HeaderList data. And sent Globally.</returns>
+     */
     public static void RegisterHeaderSettings()
     {
         try
         {
             SettingBase.Register(HeaderList);
-            GameLogger.Info("Globally Header Settings register has been completed.", Name);
-        }
-        catch (Exception ex)
-        {
-            GameLogger.Error($"{ex}", Name);
-        }
-    }
-    
-    public static void ApplyHeaderSettings(Player player)
-    {
-        try
-        {
-            SettingBase.SendToPlayer(player);
-            GameLogger.Info($"Target Player: {player}'s Header Settings apply has been completed.", Name);
-        }
-        catch (Exception ex)
-        {
-            GameLogger.Error($"{ex}", Name);
-        }
-    }
-    
-    public static void ApplyHeaderSettings()
-    {
-        try
-        {
             SettingBase.SendToAll();
-            GameLogger.Info($"Globally Header Settings apply has been completed.", Name);
         }
         catch (Exception ex)
         {
             GameLogger.Error($"{ex}", Name);
         }
     }
+
 }

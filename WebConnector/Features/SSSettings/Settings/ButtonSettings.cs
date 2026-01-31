@@ -10,17 +10,25 @@ public class ButtonSettings
 {
     private static string Name => "SSSButtonFeature";
     // SSList
-    private static List<ButtonSetting> _ButtonList { get; } = [];
+    private static List<ButtonSetting> ButtonList { get; } = [];
     private static ButtonSetting  ButtonSetting { get; set; }
 
-    public static void SetButton(int id, string name, string buttonText, string hint,  HeaderSetting header = null, float holdTime = 0.0f)
+    /**
+     * Set your ButtonSettings.
+     * <param name="id">SSSettings id (You must be a different id. if you're using the same id, <b>the plugin will be sent error</b>).</param>
+     * <param name="name">Button Title</param>
+     * <param name="buttonText">Set Button inner text</param>
+     * <param name="holdTime">Set the button hold time. (the default is 0.0f)</param>
+     * <param name="hint">Set your hint object (Can be null)</param>
+     * <param name="header">Set your HeaderSetting object. (Can be null)</param>
+     * <returns>Save this data to ButtonList</returns>
+     */
+    public static void SetButton(int id, string name, string buttonText, string hint = null,  HeaderSetting header = null, float holdTime = 0.0f)
     {
         try
         {
             ButtonSetting = new ButtonSetting(id, name, buttonText, holdTime, hint, header); 
-            _ButtonList.Add(ButtonSetting);
-
-             GameLogger.Info("SetButton has been successfully completed.", Name);
+            ButtonList.Add(ButtonSetting);
         }
         catch (Exception ex)
         {
@@ -28,14 +36,16 @@ public class ButtonSettings
         }
     }
     
-    /**Registers SSList systems at the target player.*/
+    /**It Registers 'ButtonSettings' And applies this data to the target player.
+     * <param name="player">Set to the target player</param>
+     * <returns>Register saved buttonList data. And sent target player</returns>
+     */
     public static void RegisterButtonSettings(Player player)
     {
         try
         {
-            SettingBase.Register(player, _ButtonList);
-
-            GameLogger.Info($"Target Player: {player}'s Button Settings register has been completed.", Name);
+            SettingBase.Register(player, ButtonList);
+            SettingBase.SendToPlayer(player);
         }
         catch(Exception ex)
         {
@@ -43,42 +53,17 @@ public class ButtonSettings
         }
     }
     
+    /**It Registers ButtonSettings And apply this data Globally.
+     * <returns>Register saved buttonList data. And sent Globally.</returns>
+     */
     public static void RegisterButtonSettings()
     {
         try
         {
-            SettingBase.Register(_ButtonList);
+            SettingBase.Register(ButtonList);
             SettingBase.SendToAll();
-
-            GameLogger.Info("Globally Button Settings register has been completed.", Name);
         }
         catch(Exception ex)
-        {
-            GameLogger.Error($"{ex}", Name);
-        }
-    }
-
-    public static void ApplyButtonSettings(Player player)
-    {
-        try
-        {
-            SettingBase.SendToPlayer(player);
-            GameLogger.Info($"Target Player: {player}'s Button Settings has been completed.", Name);
-        }
-        catch (Exception ex)
-        {
-            GameLogger.Error($"{ex}", Name);
-        }
-    }
-    
-    public static void ApplyButtonSettings()
-    {
-        try
-        {
-            SettingBase.SendToAll();
-            GameLogger.Info("Globally Button Settings has been completed.", Name);
-        }
-        catch (Exception ex)
         {
             GameLogger.Error($"{ex}", Name);
         }
