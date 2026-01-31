@@ -20,7 +20,7 @@ public static class GameLogger
 
             message.Append(
                 $"[WebConnector.ERROR({messageSender})]: An Error detected. Error Description:\n {(string.IsNullOrEmpty(_message) ? "Unknown Error" : _message)}");
-
+        
             Log.Error(message);
         }
         catch (Exception ex)

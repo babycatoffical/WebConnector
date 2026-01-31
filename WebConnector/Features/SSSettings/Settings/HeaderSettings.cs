@@ -13,14 +13,14 @@ public class HeaderSettings
     private static List<HeaderSetting> HeaderList { get; } = [];
 
     /**
-     * Set your HeaderSettings
+     * Set your SS Header Settings
      *  <param name="id">SSSettings id (You must be a different id. if you're using the same id, <b>the plugin will be sent error</b>).</param>
      *  <param name="name">Set the HeaderSettings name.</param>
      *  <param name="hint">Set your hint object (Can be Null)</param>
      *  <param name="padding">Set headerSettings padding (the default is 'true')</param>
      *  <returns>It makes HeaderSettings and save to HeaderList</returns>
      */
-    public static void SetHeader(int id, string name, string hint = null, bool padding = true)
+    public static void Set(int id, string name, string hint = null, bool padding = true)
     {
         try
         {
@@ -38,7 +38,7 @@ public class HeaderSettings
      * <param name="player">Set a target player</param>
      * <returns>Register HeaderSettings to target player, and sent to target player</returns>
      */
-    public static void RegisterHeaderSettings(Player player)
+    public static void Register(Player player)
     {
         try
         {
@@ -54,7 +54,7 @@ public class HeaderSettings
     /**It Registers HeaderSettings And apply this data Globally.
      * <returns>Register saved HeaderList data. And sent Globally.</returns>
      */
-    public static void RegisterHeaderSettings()
+    public static void Register()
     {
         try
         {
@@ -67,4 +67,11 @@ public class HeaderSettings
         }
     }
 
+    /** Returns index number located header data at HeaderList. ID numbers start at 1. <b>Make sure to check where the header you want actually registers.</b>
+     * <param name="id">The ID number</param>
+     */
+    public static HeaderSetting GetHeaderData(ushort id)
+    {
+        return HeaderList[id - 1];
+    }
 }

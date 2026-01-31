@@ -38,7 +38,19 @@
           <HintPath>..\packages\Lib.Harmony.2.4.2\lib\net48\0Harmony.dll</HintPath>
         </Reference>
         <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-          <HintPath>..\packages\ExMod.Exiled.9.12.6\lib\net48\Assembly-CSharp-Publicized.dll</HintPath>
+          <HintPath>..\..\TestServer\steamapps\common\SCP Secret Laboratory Dedicated Server\SCPSL_Data\Managed\Assembly-CSharp.dll</HintPath>
+        </Reference>
+        <Reference Include="Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+            <HintPath>..\..\TestServer\steamapps\common\SCP Secret Laboratory Dedicated Server\SCPSL_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=NSIL">
+            <HintPath>..\..\TestServer\steamapps\common\SCP Secret Laboratory Dedicated Server\SCPSL_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.PhysicsModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=NSIL">
+            <HintPath>..\..\TestServer\steamapps\common\SCP Secret Laboratory Dedicated Server\SCPSL_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=NSIL">
+            <HintPath>..\..\TestServer\steamapps\common\SCP Secret Laboratory Dedicated Server\SCPSL_Data\Managed\UnityEngine.%dll</HintPath>
         </Reference>
         <Reference Include="CommandSystem.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
           <HintPath>..\packages\ExMod.Exiled.9.12.6\lib\net48\CommandSystem.Core.dll</HintPath>
@@ -65,10 +77,13 @@
           <HintPath>..\packages\ExMod.Exiled.9.12.6\lib\net48\Exiled.Permissions.dll</HintPath>
         </Reference>
         <Reference Include="LabApi, Version=1.1.4.3, Culture=neutral, processorArchitecture=Amd64">
-          <HintPath>..\packages\ExMod.Exiled.9.12.6\lib\net48\LabApi.dll</HintPath>
+          <HintPath>..\..\TestServer\steamapps\common\SCP Secret Laboratory Dedicated Server\SCPSL_Data\Managed\LabApi.dll</HintPath>
         </Reference>
         <Reference Include="NorthwoodLib, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-          <HintPath>..\packages\ExMod.Exiled.9.12.6\lib\net48\NorthwoodLib.dll</HintPath>
+          <HintPath>..\..\TestServer\steamapps\common\SCP Secret Laboratory Dedicated Server\SCPSL_Data\Managed\NorthwoodLib.dll</HintPath>
+        </Reference>
+        <Reference Include="AudioPlayerApi, Version=0.0.0.0 Culture=neutral, processorArchitecture=MSIL">
+            <HintPath>C:\Users\wjsgh\AppData\Roaming\EXILED\Plugins\dependencies\AudioPlayerApi.dll</HintPath>
         </Reference>
         <Reference Include="System"/>
         <Reference Include="System.Core"/>
@@ -81,9 +96,13 @@
     <ItemGroup>
         <Compile Include="Config.cs" />
         <Compile Include="Features\Logger\GameLogger.cs" />
+        <Compile Include="Features\SSSettings\AllTest.cs" />
         <Compile Include="Features\SSSettings\Settings\ButtonSettings.cs" />
         <Compile Include="Features\SSSettings\Settings\HeaderSettings.cs" />
         <Compile Include="Features\SSSettings\Settings\DropdownSettings.cs" />
+        <Compile Include="Features\SSSettings\Settings\KeybindSettings.cs" />
+        <Compile Include="Features\SSSettings\Settings\Settings.cs" />
+        <Compile Include="Features\Test\Actions\Explode.cs" />
         <Compile Include="Handlers\ServerHandler.cs" />
         <Compile Include="Plugin.cs" />
         <Compile Include="Properties\AssemblyInfo.cs"/>

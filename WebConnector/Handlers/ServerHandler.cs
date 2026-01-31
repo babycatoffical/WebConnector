@@ -9,6 +9,8 @@ public class ServerHandler
     {
         var target = ev.Player;
         
+        AllTest.HeaderSet();
+        AllTest.ButtonTest(target);
     }
     
 }
